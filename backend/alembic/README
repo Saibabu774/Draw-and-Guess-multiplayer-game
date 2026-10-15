@@ -1,0 +1,1 @@
+Run `python -m alembic revision --autogenerate -m 'initial schema'` then `python -m alembic upgrade head` after configuring .env. Tables are also created automatically for quick local development.

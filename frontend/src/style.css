@@ -1,0 +1,4 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f6fb; }
+.canvas { width: 100%; height: auto; aspect-ratio: 5 / 3; border: 2px solid #d6d8e5; border-radius: 12px; background: white; touch-action: none; display: block; }
+.canvas.drawing { cursor: crosshair; }

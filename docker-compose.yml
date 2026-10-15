@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: change_me
+      MYSQL_DATABASE: drawing_game
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: mysql+pymysql://root:change_me@mysql:3306/drawing_game
+      CORS_ORIGINS: http://localhost:5173
+      ROUND_SECONDS: 60
+      MIN_PLAYERS: 2
+      TOTAL_ROUNDS: 3
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+volumes:
+  mysql_data:
